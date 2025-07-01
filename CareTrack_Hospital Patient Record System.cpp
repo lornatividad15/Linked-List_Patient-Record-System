@@ -1,30 +1,28 @@
-#include <bits/stdc++.h>
 #include <windows.h>
-#include <ctype.h>
 #include <fstream>
-#include <string.h>
-#include <cstdlib>
-#include <sstream>
 #include <ctime>
+#include <cstring>
+#include <cstdlib>
+#include <iostream>
 using namespace std;
 
-/*NOTE: For better viewing do not maximize the console. Use Dev C++.*/
+/*Note: For better viewing do not maximize the console. Use Dev C++*/
 
-// Move cursor position
+// MOVE CURSOR POSITION
 void gotoxy(int x, int y){
 	COORD coord;
 	coord.X = x;
 	coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
 }
-// Changing color
+// SET TEXT COLOR
 void setColor(int color) {
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
     //0-black 1-blue 2-green 3-aqua/cyan 4-red 5-purple 6-yellow 7-white
     //8-gray 9-ligth blue 10-light green 11-light cyan 12-light red 
     //13-pink/magenta 14-light yellow 15-bright white
 }
-//horizontal solid bar
+// HORIZONTAL SOLID BAR
 void solidBar(){
 	setColor(3);
 	int length = 120;
@@ -32,18 +30,18 @@ void solidBar(){
 		cout<<(char)219;
 	}
 }
-// outer box
+// DRAW OUTER BOX
 void drawBox(int x1, int y1, int x2, int y2) {
 	setColor(15); 
     for (int y = y1; y <= y2; y++) {
         gotoxy(x1, y);
         for (int x = x1; x <= x2; x++) {
-            cout << (char)219; // Solid block character
+            cout << (char)219;
         }
     }
     setColor(7);
 }
-// red cross
+// DRAW RED CROSS
 void drawRedCross(int x, int y) {
     setColor(4); 
     gotoxy(x + 8, y + 1); int alen=8; for(int i=0; i<alen; i++){cout<<(char)219;}
@@ -58,7 +56,7 @@ void drawRedCross(int x, int y) {
     gotoxy(x + 8, y + 10); int jlen=8; for(int i=0; i<jlen; i++){cout<<(char)219;}
     setColor(7); 
 }
-//label CARETRACK within bar
+// LABEL CARETRACK WITHIN BAR
 void mediBar(){
 	setColor(15);
    	//C +11
@@ -125,7 +123,7 @@ void mediBar(){
 	gotoxy(99,9); cout << string(2,(char)219) << "      " << string(2,(char)219);
 	gotoxy(99,10); cout << string(2,(char)219) << "      " << string(2,(char)219);
 }
-//label CARETRACK
+// LABEL CARETRACK
 void medi(){
 	setColor(15);
    	//C +11
@@ -192,7 +190,7 @@ void medi(){
 	gotoxy(99,9); cout << string(2,(char)219) << "      " << string(2,(char)219);
 	gotoxy(99,10); cout << string(2,(char)219) << "      " << string(2,(char)219);
 }
-//label ADMIN
+// LABEL ADMIN
 void ad(){
 	setColor(15);
    	//A +11
@@ -231,7 +229,7 @@ void ad(){
     gotoxy(77,9); cout << string(2,(char)219) << "      " << string(2,(char)219);	
     gotoxy(77,10); cout << string(2,(char)219) << "      " << string(2,(char)219);	
 }
-//label WELCOME
+// LABEL WELCOME
 void wel(){
 	setColor(15);
 	//W +11
@@ -284,7 +282,7 @@ void wel(){
 	gotoxy(88,9); cout << string(2,(char)219) << "        ";
 	gotoxy(88,10); cout << string(10,(char)219);
 }
-//label MENU
+// LABEL MENU
 void menu(){
 	setColor(15);
 	//M +11
@@ -316,7 +314,7 @@ void menu(){
 	gotoxy(71, 9); cout << string(2,(char)219) << "      " << string(2,(char)219);
 	gotoxy(71, 10); cout << "  " << string(6,(char)219) << "  ";
 }
-//label EDIT
+// LABEL EDIT
 void edit(){
 	setColor(15);
 	//E +11
@@ -348,7 +346,7 @@ void edit(){
     gotoxy(71,9); cout << "    " << string(2,(char)219) << "    "; 
     gotoxy(71,10); cout << "    " << string(2,(char)219) << "    "; 
 }
-//label ADD
+// LABEL ADD
 void add(){
 	setColor(15);
 	//A +11
@@ -373,7 +371,7 @@ void add(){
     gotoxy(66,9); cout << string(2,(char)219) << "      " << string(2,(char)219);
     gotoxy(66,10); cout << string(8,(char)219) << "  ";
 }
-//label VIEW
+// LABEL VIEW
 void viewLabel(){
 	setColor(15);
 	//V +11
@@ -405,7 +403,7 @@ void viewLabel(){
 	gotoxy(71,9); cout << string(2,(char)219) << "  " << string(2,(char)219) << "  " << string(2,(char)219);
 	gotoxy(71,10); cout << "  " << string(2,(char)219) << "  " << string(2,(char)219) << "  ";
 }
-//label UPDATE
+// LABEL UPDATE
 void upd(){
 	setColor(15);
 	//U +11
@@ -451,7 +449,7 @@ void upd(){
 	gotoxy(82,9); cout << string(2,(char)219) << "        ";
 	gotoxy(82,10); cout << string(10,(char)219);
 }
-//label DELETE
+// LABEL DELETE
 void delLabel(){
 	setColor(15);
 	//D +11
@@ -497,15 +495,15 @@ void delLabel(){
 	gotoxy(82,9); cout << string(2,(char)219) << "        ";
 	gotoxy(82,10); cout << string(10,(char)219);
 }
-//function declaration
-void saveAdmin(), loadAdmin(), viewLogin(), login(), welcomePage(), CallPatient(), adminScreen(), adminMenu(), addPatient(), viewPatient(), updatePatient(),
-delPatient(), loadPatient(), savePatient(), displayFormatID(int number), saveReceipt(), loadReceipt(), viewReceipt(), patientReceipt(), searchPatientByField(),
-selectionSortStringField(int field), bubbleSortNumericField(int field), displayPatientList();
+// FUNCTION DECLARATION
+void saveAdmin(), loadAdmin(), viewLogin(), login(), welcomePage(), adminScreen(), adminMenu(), addPatient(), viewPatient(), updatePatient(),
+delPatient(), loadPatient(), savePatient(), displayFormatID(int number), searchPatientByField(), selectionSortStringField(int field), 
+bubbleSortNumericField(int field), displayPatientList();
 
-// Prototype for findPatientByID
+// PROTOTYPE FOR findPatientByID
 struct PatientNode* findPatientByID(int searchID);
 
-// Linked List Node for Patient
+// LINKED LIST NODE FOR PATIENT
 struct PatientNode {
     int id;
     char name[100];
@@ -517,17 +515,17 @@ struct PatientNode {
     PatientNode* next;
 };
 
-PatientNode* head = nullptr;
+PatientNode* head = NULL;
 int patientCount = 0, receiptCount = 0, capacity = 1000;
 
-// Admin credentials: admin[0] = username, admin[1] = password
+// ADMIN CREDENTIALS: admin[0] = USERNAME, admin[1] = PASSWORD
 char admin[2][100];
 
-// Patient arrays for array-based sorting (capacity = 1000)
+// PATIENT ARRAYS FOR ARRAY-BASED SORTING (CAPACITY = 1000)
 int id[1000], age[1000], priority[1000];
 char name[1000][100], gender[1000][10], arrivalTime[1000][25], symptoms[1000][100];
 
-//mainScreen
+// MAIN SCREEN
 int main() {
 	system("cls");
 	while(1){
@@ -537,18 +535,18 @@ int main() {
 	
 		gotoxy(0,7); solidBar();
 		
-		//Label CARETRACK with bar
+		//LABEL CARETRACK WITH BAR
 		mediBar();
     
     	setColor(7); 
-    	int x1 = 43; //position x
-    	int y1 = 12; //position y
-    	int x2 = x1 + 35; //number of -
-    	int y2 = y1 + 15; //numer of |
+    	int x1 = 43; //POSITION X
+    	int y1 = 12; //POSITION Y
+    	int x2 = x1 + 35; //NUMBER OF -
+    	int y2 = y1 + 15; //NUMER OF |
 	    drawBox(x1, y1, x2, y2);
     
-   		// Draw cross centered inside the box
-    	drawRedCross(x1 + 6, y1 + 2); // Adjusted position for center
+   		// DRAW CROSS CENTERED INSIDE THE BOX
+    	drawRedCross(x1 + 6, y1 + 2); // ADJUSTED POSITION FOR CENTER
     	
     	gotoxy(0, 29); cout<<"\n"; solidBar();
     
@@ -576,14 +574,14 @@ int main() {
 		}
 	}
 }
-//save admin user and pass to admin.txt file
+// SAVE ADMIN USER AND PASS TO admin.txt FILE
 void saveAdmin(){
 	ofstream file("admin.txt");
 	file << admin[0] << endl;
 	file << admin[1] << endl;
 	file.close();
 }
-//load admin user and pass from admin.txt file
+// LOAD ADMIN USER AND PASS FROM admin.txt FILE
 void loadAdmin(){
 	ifstream file("admin.txt");
 	if(file.is_open()){
@@ -596,11 +594,11 @@ void loadAdmin(){
 		saveAdmin();
 	}
 }
-//view or login page
+// VIEW OR LOGIN PAGE
 void viewLogin(){
 	system("cls");
 	while(1){
-		//Label CARETRACK
+		//LABEL CARETRACK
     	medi();
 	
 		gotoxy(0, 12); solidBar();
@@ -640,12 +638,12 @@ void viewLogin(){
 		}
 	}
 }
-//login page
+// LOGIN PAGE
 void login(){
 	system("cls");
 	int attempts = 0;
  	while(attempts < 3){
- 		//label ADMIN
+ 		//LABEL ADMIN
 		ad();
     	
     	gotoxy(0, 12); solidBar();
@@ -682,22 +680,22 @@ void login(){
 		}
 	}
 }
-//welcome page
+// WELCOME PAGE
 void welcomePage(){
 	system("cls");
 	gotoxy(0,7); solidBar();
 	
-	//label WELCOME
+	//LABEL WELCOME
 	wel();
 
-    int x1 = 43; //position x
-    int y1 = 12; //position y
-    int x2 = x1 + 35; //number of -
-    int y2 = y1 + 15; //numer of |
+    int x1 = 43; //POSITION X
+    int y1 = 12; //POSITION Y
+    int x2 = x1 + 35; //NUMBER OF -
+    int y2 = y1 + 15; //NUMER OF |
     drawBox(x1, y1, x2, y2);
     
-    // Draw cross centered inside the box
-    drawRedCross(x1 + 6, y1 + 2); // Adjusted position for center
+    // DRAW CROSS CENTERED INSIDE THE BOX
+    drawRedCross(x1 + 6, y1 + 2); // ADJUSTED POSITION FOR CENTER
     
     setColor(15); 
     gotoxy(40,28);
@@ -712,12 +710,12 @@ void welcomePage(){
     system("cls");
     adminScreen();
 }
-//main menu screen
+// MAIN MENU SCREEN
 void adminScreen(){
 	loadPatient();
     while(1){
 		system("cls");
-		//Label CARETRACK
+		//LABEL CARETRACK
     	medi();
 		
 		gotoxy(0, 12); solidBar();
@@ -754,26 +752,67 @@ void adminScreen(){
 			while(1){
 				system("cls");
 				setColor(15);
-				cout << "\nSELECTION SORT BY FIELD (String fields only):\n";
-				cout << "1. Name\n";
-				cout << "2. Gender\n";
-				cout << "3. Symptoms\n";
-				cout << "4. Arrival Date/Time\n";
-				cout << "0. Back\n";
+				gotoxy(30,5);
+				cout << "SELECTION SORT BY FIELD (String fields only):";
+				int y=7;
+				gotoxy(30,y);
+				char opt[5][100] = {"[1] Name", "[2] Gender", "[3] Illness", "[4] Arrival", "[0] Back"};
+				int n = sizeof(opt)/sizeof(opt[0]);
+				for(int i=0; i<n; i++){
+					gotoxy(30, y + i);
+					cout<<opt[i]<<endl;
+				}
+				gotoxy(30, y + n);
 				cout << "Enter your choice: ";
 				char selChoice;
 				cin >> selChoice;
 				cin.ignore();
-				if(selChoice == '0') break;
-				if(selChoice == '1') selectionSortStringField(1); // Name
-				else if(selChoice == '2') selectionSortStringField(2); // Gender
-				else if(selChoice == '3') selectionSortStringField(3); // Symptoms
-				else if(selChoice == '4') selectionSortStringField(4); // Arrival
-				setColor(10);
-				cout << "\nSelection Sort completed!\n";
-				setColor(15);
-				displayPatientList();
-				setColor(0); cout << "\nPress [Enter] to return to sort menu..."; system("pause");
+				if(selChoice == '1'){
+					selectionSortStringField(1); // Name
+					setColor(10);
+					cout << "\nSelection Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(selChoice == '2'){
+					selectionSortStringField(2); // Gender
+					setColor(10);
+					cout << "\nSelection Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(selChoice == '3'){
+					selectionSortStringField(3); // Symptoms
+					setColor(10);
+					cout << "\nSelection Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(selChoice == '4'){
+					selectionSortStringField(4); // Arrival
+					setColor(10);
+					cout << "\nSelection Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(selChoice == '0'){
+    				break;
+				} else {
+					setColor(12);
+					cout<<"\nInvalid Option! ";
+					cout<<" Please try again. \nPress [Enter] to proceed....";
+					setColor(0); system("pause");
+					system("cls");
+					setColor(7);
+				}
 			}
 		}
 		else if(choice == '6'){
@@ -781,24 +820,58 @@ void adminScreen(){
 			while(1){
 				system("cls");
 				setColor(15);
-				cout << "\nBUBBLE SORT BY FIELD (Numeric fields only):\n";
-				cout << "1. Age\n";
-				cout << "2. Priority\n";
-				cout << "3. ID\n";
-				cout << "0. Back\n";
+				gotoxy(30,5);
+				cout << "BUBBLE SORT BY FIELD (Numeric fields only):";
+				int y=7;
+				gotoxy(30,y);
+				char opt[5][100] = {"[1] Age", "[2] Priority", "[3] ID", "[0] Back"};
+				int n = sizeof(opt)/sizeof(opt[0]);
+				for(int i=0; i<n; i++){
+					gotoxy(30, y + i);
+					cout<<opt[i]<<endl;
+				}
+				gotoxy(30, y + n);
 				cout << "Enter your choice: ";
 				char bubChoice;
 				cin >> bubChoice;
 				cin.ignore();
-				if(bubChoice == '0') break;
-				if(bubChoice == '1') bubbleSortNumericField(1); // Age
-				else if(bubChoice == '2') bubbleSortNumericField(2); // Priority
-				else if(bubChoice == '3') bubbleSortNumericField(3); // ID
-				setColor(10);
-				cout << "\nBubble Sort completed!\n";
-				setColor(15);
-				displayPatientList();
-				setColor(0); cout << "\nPress [Enter] to return to sort menu..."; system("pause");
+				if(bubChoice == '1'){
+					bubbleSortNumericField(1); // Age
+					setColor(10);
+					cout << "\nBubble Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(bubChoice == '2'){
+					bubbleSortNumericField(2); // Priority
+					setColor(10);
+					cout << "\nBubble Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(bubChoice == '3'){
+					bubbleSortNumericField(3); // ID
+					setColor(10);
+					cout << "\nBubble Sort completed!\n\n";
+					setColor(15);
+					displayPatientList();
+					setColor(1);
+					cout << "\nPress [Enter] to return to sort menu...";
+					setColor(0); system("pause");
+				} else if(bubChoice == '0'){
+    				break;
+				} else {
+					setColor(12);
+					cout<<"\nInvalid Option! ";
+					cout<<" Please try again. \nPress [Enter] to proceed....";
+					setColor(0); system("pause");
+					system("cls");
+					setColor(7);
+				}
 			}
 		}
 		else if(choice == '7'){
@@ -820,11 +893,11 @@ void adminScreen(){
 	}
 }
 
-// admin menu page
+// ADMIN MENU PAGE
 void adminMenu(){
 	system("cls");
 	while(1){
-		//label MENU
+		//LABEL MENU
 		menu();
 		
 		gotoxy(0, 12); solidBar();
@@ -846,7 +919,7 @@ void adminMenu(){
 		cin.ignore();
 		if(choice == '1'){
 			system("cls");
-			//label EDIT
+			//LABEL EDIT
 			edit();
     		
     		gotoxy(0, 12); solidBar();
@@ -873,7 +946,7 @@ void adminMenu(){
 		}
 		else if(choice == '2'){
 			system("cls");
-			//label EDIT
+			//LABEL EDIT
 			edit();
     		
     		gotoxy(0, 12); solidBar();
@@ -909,9 +982,9 @@ void adminMenu(){
 		}
 	}
 }
-// Patient Linked List utility functions
+// PATIENT LINKED LIST UTILITY FUNCTIONS
 
-// Free all patient nodes
+// FREE ALL PATIENT NODES
 void freePatientList() {
     PatientNode* curr = head;
     while (curr) {
@@ -923,7 +996,7 @@ void freePatientList() {
     patientCount = 0;
 }
 
-// Save all patients to file
+// SAVE ALL PATIENTS TO FILE
 void savePatient() {
     ofstream file("patients.txt");
     PatientNode* curr = head;
@@ -940,7 +1013,7 @@ void savePatient() {
     file.close();
 }
 
-// Load all patients from file
+// LOAD ALL PATIENTS FROM FILE
 void loadPatient() {
     freePatientList();
     ifstream file("patients.txt");
@@ -967,23 +1040,23 @@ void loadPatient() {
     file.close();
 }
 
-//generate patient ID
+// GENERATE PATIENT ID
 int generatePatientID(){
 	ifstream file("patient_ID.txt");
 	int lastPatientNum = 0;
 	if(file.is_open()){
-		file >> lastPatientNum; //read last patient ID
+		file >> lastPatientNum; //READ LAST PATIENT ID
 		file.close();
 	}
 	lastPatientNum++;
 	
 	ofstream outfile("patient_ID.txt");
-	outfile << lastPatientNum; //save patient ID
+	outfile << lastPatientNum; //SAVE PATIENT ID
 	outfile.close();
 	
 	return lastPatientNum;
 }
-//format patient ID number
+// FORMAT PATIENT ID NUMBER
 void displayFormatID(int number){
 	cout << "PAT-";
 	if(number < 10){
@@ -996,10 +1069,10 @@ void displayFormatID(int number){
 		cout << number;
 	}
 }
-//add patient info
+// ADD PATIENT INFO
 void addPatient(){
     system("cls");
-    add(); //label ADD
+    add(); //LABEL ADD
     gotoxy(0, 12); solidBar();
     char confirm;
     setColor(15);
@@ -1049,7 +1122,7 @@ void addPatient(){
                 setColor(15);
             }
         }
-        // Auto-generate Arrival Date/Time
+        // AUTO-GENERATE ARRIVAL DATE/TIME
         time_t now = time(0);
         tm *ltm = localtime(&now);
         sprintf(newNode->arrivalTime, "%04d-%02d-%02d %02d:%02d:%02d",
@@ -1080,7 +1153,7 @@ void addPatient(){
             }
         }
         newNode->next = nullptr;
-        // Insert at end
+        // INSERT AT END
         if(head == nullptr) {
             head = newNode;
         } else {
@@ -1113,7 +1186,7 @@ void addPatient(){
         }
     }
 }
-//swap
+// SWAP
 void swapPatient(int a, int b) {
     int tempID = id[a];
     id[a] = id[b];
@@ -1147,7 +1220,7 @@ void swapPatient(int a, int b) {
     priority[a] = priority[b];
     priority[b] = tempPriority;
 }
-//bubble sort
+// BUBBLE SORT
 void bubbleSort(int field) {
     for (int i = 0; i < patientCount - 1; i++) {
         for (int j = 0; j < patientCount - i - 1; j++) {
@@ -1155,6 +1228,7 @@ void bubbleSort(int field) {
 
             if (field == 1) { // Name
                 char name1[100], name2[100];
+                              
                 strcpy(name1, name[j]);
                 strcpy(name2, name[j+1]);
                 strlwr(name1);
@@ -1177,7 +1251,7 @@ void bubbleSort(int field) {
         }
     }
 }
-// Swap two patient nodes by pointer (for sorting)
+// SWAP TWO PATIENT NODES BY POINTER (FOR SORTING)
 void swapPatientData(PatientNode* a, PatientNode* b) {
     if (!a || !b) return;
     std::swap(a->id, b->id);
@@ -1190,7 +1264,7 @@ void swapPatientData(PatientNode* a, PatientNode* b) {
     strcpy(tmpSymptoms, a->symptoms); strcpy(a->symptoms, b->symptoms); strcpy(b->symptoms, tmpSymptoms);
 }
 
-// Selection Sort for string fields (linked list)
+// SELECTION SORT FOR STRING FIELDS (LINKED LIST)
 void selectionSortStringField(int field) {
     for (PatientNode* i = head; i && i->next; i = i->next) {
         PatientNode* minNode = i;
@@ -1222,7 +1296,7 @@ void selectionSortStringField(int field) {
     }
 }
 
-// Bubble Sort for numeric fields (linked list)
+// BUBBLE SORT FOR NUMERIC FIELDS (LINKED LIST)
 void bubbleSortNumericField(int field) {
     if (!head) return;
     bool swapped;
@@ -1244,192 +1318,11 @@ void bubbleSortNumericField(int field) {
         }
     } while (swapped);
 }
-//mergesort
-void merge(int left, int mid, int right, int field) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    int tempID[100], tempAge[100], tempPriority[100];
-    char tempName[100][100], tempGender[100][10], tempArrival[100][10], tempSymptoms[100][100];
-
-    for (int i = 0; i < n1; i++) {
-        tempID[i] = id[left + i];
-        strcpy(tempName[i], name[left + i]);
-        tempAge[i] = age[left + i];
-        strcpy(tempGender[i], gender[left + i]);
-        strcpy(tempArrival[i], arrivalTime[left + i]);
-        strcpy(tempSymptoms[i], symptoms[left + i]);
-        tempPriority[i] = priority[left + i];
-    }
-    for (int j = 0; j < n2; j++) {
-        tempID[n1 + j] = id[mid + 1 + j];
-        strcpy(tempName[n1 + j], name[mid + 1 + j]);
-        tempAge[n1 + j] = age[mid + 1 + j];
-        strcpy(tempGender[n1 + j], gender[mid + 1 + j]);
-        strcpy(tempArrival[n1 + j], arrivalTime[mid + 1 + j]);
-        strcpy(tempSymptoms[n1 + j], symptoms[mid + 1 + j]);
-        tempPriority[n1 + j] = priority[mid + 1 + j];
-    }
-
-    int i = 0, j = n1, k = left;
-
-    while (i < n1 && j < n1 + n2) {
-        bool condition = false;
-        
-        if (field == 2) { // Age
-            if (tempAge[i] <= tempAge[j]) condition = true;
-        } else if (field == 4) { // Arrival Time
-            if (strcmp(tempArrival[i], tempArrival[j]) <= 0) condition = true;
-        } else if (field == 6) { // Priority (Descending Order: Emergency > Urgent > Normal)
-            if (tempPriority[i] >= tempPriority[j]) condition = true;
-        }
-
-        if (condition) {
-            id[k] = tempID[i];
-            strcpy(name[k], tempName[i]);
-            age[k] = tempAge[i];
-            strcpy(gender[k], tempGender[i]);
-            strcpy(arrivalTime[k], tempArrival[i]);
-            strcpy(symptoms[k], tempSymptoms[i]);
-            priority[k] = tempPriority[i];
-            i++;
-        } else {
-            id[k] = tempID[j];
-            strcpy(name[k], tempName[j]);
-            age[k] = tempAge[j];
-            strcpy(gender[k], tempGender[j]);
-            strcpy(arrivalTime[k], tempArrival[j]);
-            strcpy(symptoms[k], tempSymptoms[j]);
-            priority[k] = tempPriority[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i < n1) {
-        id[k] = tempID[i];
-        strcpy(name[k], tempName[i]);
-        age[k] = tempAge[i];
-        strcpy(gender[k], tempGender[i]);
-        strcpy(arrivalTime[k], tempArrival[i]);
-        strcpy(symptoms[k], tempSymptoms[i]);
-        priority[k] = tempPriority[i];
-        i++;
-        k++;
-    }
-
-    while (j < n1 + n2) {
-        id[k] = tempID[j];
-        strcpy(name[k], tempName[j]);
-        age[k] = tempAge[j];
-        strcpy(gender[k], tempGender[j]);
-        strcpy(arrivalTime[k], tempArrival[j]);
-        strcpy(symptoms[k], tempSymptoms[j]);
-        priority[k] = tempPriority[j];
-        j++;
-        k++;
-    }
-}
-void mergeSortByField(int left, int right, int field) {
-    if (left < right) {
-        int mid = (left + right) / 2;
-        mergeSortByField(left, mid, field);
-        mergeSortByField(mid+1, right, field);
-        merge(left, mid, right, field);
-    }
-}
- // merge sort patient id asc/des
-void mergeByID(int left, int mid, int right, bool ascending) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    int tempID[100];
-    char tempName[100][100], tempGender[100][10], tempArrival[100][10], tempSymptoms[100][100];
-    int tempAge[100], tempPriority[100];
-
-    for (int i = 0; i < n1; i++) {
-        tempID[i] = id[left + i];
-        strcpy(tempName[i], name[left + i]);
-        tempAge[i] = age[left + i];
-        strcpy(tempGender[i], gender[left + i]);
-        strcpy(tempArrival[i], arrivalTime[left + i]);
-        strcpy(tempSymptoms[i], symptoms[left + i]);
-        tempPriority[i] = priority[left + i];
-    }
-    for (int j = 0; j < n2; j++) {
-        tempID[n1 + j] = id[mid + 1 + j];
-        strcpy(tempName[n1 + j], name[mid + 1 + j]);
-        tempAge[n1 + j] = age[mid + 1 + j];
-        strcpy(tempGender[n1 + j], gender[mid + 1 + j]);
-        strcpy(tempArrival[n1 + j], arrivalTime[mid + 1 + j]);
-        strcpy(tempSymptoms[n1 + j], symptoms[mid + 1 + j]);
-        tempPriority[n1 + j] = priority[mid + 1 + j];
-    }
-
-    int i = 0, j = n1, k = left;
-    while (i < n1 && j < n1 + n2) {
-        bool condition = ascending ? tempID[i] <= tempID[j] : tempID[i] > tempID[j];
-
-        if (condition) {
-            id[k] = tempID[i];
-            strcpy(name[k], tempName[i]);
-            age[k] = tempAge[i];
-            strcpy(gender[k], tempGender[i]);
-            strcpy(arrivalTime[k], tempArrival[i]);
-            strcpy(symptoms[k], tempSymptoms[i]);
-            priority[k] = tempPriority[i];
-            i++;
-        } else {
-            id[k] = tempID[j];
-            strcpy(name[k], tempName[j]);
-            age[k] = tempAge[j];
-            strcpy(gender[k], tempGender[j]);
-            strcpy(arrivalTime[k], tempArrival[j]);
-            strcpy(symptoms[k], tempSymptoms[j]);
-            priority[k] = tempPriority[j];
-            j++;
-        }
-        k++;
-    }
-
-    while (i < n1) {
-        id[k] = tempID[i];
-        strcpy(name[k], tempName[i]);
-        age[k] = tempAge[i];
-        strcpy(gender[k], tempGender[i]);
-        strcpy(arrivalTime[k], tempArrival[i]);
-        strcpy(symptoms[k], tempSymptoms[i]);
-        priority[k] = tempPriority[i];
-        i++;
-        k++;
-    }
-
-    while (j < n1 + n2) {
-        id[k] = tempID[j];
-        strcpy(name[k], tempName[j]);
-        age[k] = tempAge[j];
-        strcpy(gender[k], tempGender[j]);
-        strcpy(arrivalTime[k], tempArrival[j]);
-        strcpy(symptoms[k], tempSymptoms[j]);
-        priority[k] = tempPriority[j];
-        j++;
-        k++;
-    }
-}
-// merge sort patient id asc/des
-void mergeSortByID(int left, int right, bool ascending) {
-    if (left < right) {
-        int mid = (left + right) / 2;
-        mergeSortByID(left, mid, ascending);
-        mergeSortByID(mid + 1, right, ascending);
-        mergeByID(left, mid, right, ascending);
-    }
-}
-//view patient info
+// VIEW PATIENT INFO
 void viewPatient() {
     while (1) {
         system("cls");
-        viewLabel(); //Label VIEW
+        viewLabel(); //LABEL VIEW
         gotoxy(0,12); solidBar();
         setColor(12);
         if (patientCount == 0) {
@@ -1448,74 +1341,134 @@ void viewPatient() {
         char choice;
         cin >> choice;
         if (choice == '1') {
-            // --- Added submenu for sort options ---
             while (1) {
                 system("cls");
                 setColor(15);
-                cout << "\nSORT OPTIONS:\n";
-                cout << "1. Sort by Selection Sort (String fields)\n";
-                cout << "2. Sort by Bubble Sort (Numeric fields)\n";
-                cout << "0. Back\n";
-                cout << "Enter your choice: ";
+                gotoxy(30,5); cout << "SORT OPTIONS:";
+                gotoxy(30,6); cout << "1. Sort by Selection Sort (String fields)\n";
+                gotoxy(30,7); cout << "2. Sort by Bubble Sort (Numeric fields)\n";
+                gotoxy(30,8); cout << "0. Back\n";
+                gotoxy(30,9); cout << "Enter your choice: ";
                 char sortChoice;
                 cin >> sortChoice;
                 cin.ignore();
-                if (sortChoice == '0') break;
                 if (sortChoice == '1') {
-                    // Selection Sort submenu
                     while (1) {
                         system("cls");
                         setColor(15);
-                        cout << "\nSELECTION SORT BY FIELD (String fields only):\n";
-                        cout << "1. Name\n";
-                        cout << "2. Gender\n";
-                        cout << "3. Symptoms\n";
-                        cout << "4. Arrival Date/Time\n";
-                        cout << "0. Back\n";
-                        cout << "Enter your choice: ";
+                        gotoxy(30,5); cout << "SELECTION SORT BY FIELD (String fields only):";
+                        gotoxy(30,6); cout << "1. Name\n";
+                        gotoxy(30,7); cout << "2. Gender\n";
+                        gotoxy(30,8); cout << "3. Illness\n";
+                        gotoxy(30,9); cout << "4. Arrival Date/Time\n";
+                        gotoxy(30,10); cout << "0. Back\n";
+                        gotoxy(30,11); cout << "Enter your choice: ";
                         char selChoice;
                         cin >> selChoice;
                         cin.ignore();
-                        if(selChoice == '0') break;
-                        if(selChoice == '1') selectionSortStringField(1); // Name
-                        else if(selChoice == '2') selectionSortStringField(2); // Gender
-                        else if(selChoice == '3') selectionSortStringField(3); // Symptoms
-                        else if(selChoice == '4') selectionSortStringField(4); // Arrival
-                        setColor(10);
-                        cout << "\nSelection Sort completed!\n";
-                        setColor(15);
-                        displayPatientList();
-                        setColor(0); cout << "\nPress [Enter] to return to sort menu..."; system("pause");
+                        if(selChoice == '1'){
+                        	selectionSortStringField(1); // Name
+                        	setColor(10);
+		                    cout << "\nSelection Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if(selChoice == '2'){
+							selectionSortStringField(2); // Gender
+							setColor(10);
+		                    cout << "\nSelection Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if(selChoice == '3'){
+							selectionSortStringField(3); // Symptoms
+							setColor(10);
+		                    cout << "\nSelection Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if(selChoice == '4'){
+							selectionSortStringField(4); // Arrival
+							setColor(10);
+		                    cout << "\nSelection Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if(selChoice == '0'){
+							break;
+						} else {
+							setColor(12);
+							cout<<"\nInvalid Option! Please try again. \nPress [Enter] to proceed....";
+							setColor(0); system("pause");
+						}
                     }
                 } else if (sortChoice == '2') {
-                    // Bubble Sort submenu
                     while (1) {
                         system("cls");
                         setColor(15);
-                        cout << "\nBUBBLE SORT BY FIELD (Numeric fields only):\n";
-                        cout << "1. Age\n";
-                        cout << "2. Priority\n";
-                        cout << "3. ID\n";
-                        cout << "0. Back\n";
-                        cout << "Enter your choice: ";
+                        gotoxy(30,5); cout << "BUBBLE SORT BY FIELD (Numeric fields only):";
+                        gotoxy(30,6); cout << "1. Age\n";
+                        gotoxy(30,7); cout << "2. Priority\n";
+                        gotoxy(30,8); cout << "3. ID\n";
+                        gotoxy(30,9); cout << "0. Back\n";
+                        gotoxy(30,10); cout << "Enter your choice: ";
                         char bubChoice;
                         cin >> bubChoice;
                         cin.ignore();
-                        if (bubChoice == '0') break;
-                        if (bubChoice == '1') bubbleSortNumericField(1); // Age
-                        else if (bubChoice == '2') bubbleSortNumericField(2); // Priority
-                        else if (bubChoice == '3') bubbleSortNumericField(3); // ID
-                        setColor(10);
-                        cout << "\nBubble Sort completed!\n";
-                        setColor(15);
-                        displayPatientList();
-                        setColor(0); cout << "\nPress [Enter] to return to sort menu..."; system("pause");
+                        if (bubChoice == '1'){
+                        	bubbleSortNumericField(1); // Age
+                        	setColor(10);
+		                    cout << "\nBubble Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if (bubChoice == '2'){
+							bubbleSortNumericField(2); // Priority
+							setColor(10);
+		                    cout << "\nBubble Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if (bubChoice == '3'){
+							bubbleSortNumericField(3); // ID
+							setColor(10);
+		                    cout << "\nBubble Sort completed!\n\n";
+		                    setColor(15);
+		                    displayPatientList();
+		                    setColor(1);
+		                    cout << "\nPress [Enter] to return to sort menu..."; 
+		                    setColor(0); system("pause");
+						} else if(bubChoice == '0'){
+							break;
+						} else {
+							setColor(12);
+							cout<<"\nInvalid Option! Please try again. \nPress [Enter] to proceed....";
+							setColor(0); system("pause");
+						}
                     }
-                }
+                } else if(sortChoice == '0'){
+                	break;
+				} else{
+					setColor(12);
+		            cout << "\nInvalid Option! Please try again. \nPress [Enter] to proceed....";
+		            setColor(0); system("pause");
+				}
             }
         } else if (choice == '2') {
-            system("cls");
-            return;
+			system("cls");
+    		return;
         } else {
             setColor(12);
             cout << "\nInvalid Option! Please try again. \nPress [Enter] to proceed....";
@@ -1524,7 +1477,7 @@ void viewPatient() {
     }
 }
 
-//confirmation of user and pass for update page
+// CONFIRMATION OF USER AND PASS FOR UPDATE PAGE
 void confirmAdmin(){
 	char confirmuser[100], confirmpass[100];
 	cout<<"\n\nConfirm Admin Username: ";
@@ -1544,10 +1497,10 @@ void confirmAdmin(){
 		setColor(0); system("pause");
 	}
 }
-//update patient info
+// UPDATE PATIENT INFO
 void updatePatient() {
     system("cls");
-    //label UPDATE
+    //LABEL UPDATE
     upd();
     gotoxy(0,12); solidBar();
     setColor(15);
@@ -1573,7 +1526,7 @@ void updatePatient() {
         cout << string(5,(char)205) << " UPDATE FOR "; displayFormatID(p->id); cout << " " << string(5,(char)205);
         int y=17;
         gotoxy(30,y);
-        char opt[7][100] = {"1. Name", "2. Age", "3. Gender", "4. Arrival Time", "5. Symptoms", "6. Priority", "0. Exit"};
+        char opt[7][100] = {"[1] Name", "[2] Age", "[3] Gender",  "[4] Illness", "[5] Priority", "[0] Exit"};
         int n = sizeof(opt)/sizeof(opt[0]);
         for(int i=0; i<n; i++){
             gotoxy(30, y + i);
@@ -1585,65 +1538,59 @@ void updatePatient() {
         cin>>choice;
         cin.ignore();
         if(choice == '1'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
+            system("cls"); edit(); gotoxy(0,12); solidBar(); setColor(15);
             cout << "Current Name: " << p->name << "\nEnter new Name (or press Enter to keep): ";
             char buf[100];
             cin.getline(buf, 100);
             if (strlen(buf) > 0) strcpy(p->name, buf);
         } else if(choice == '2'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
+            system("cls"); edit(); gotoxy(0,12); solidBar(); setColor(15);
             cout << "Current Age: " << p->age << "\nEnter new Age (or 0 to keep): ";
             int newAge; cin >> newAge; cin.ignore();
             if (newAge > 0) p->age = newAge;
         } else if(choice == '3'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
+            system("cls"); edit(); gotoxy(0,12); solidBar(); setColor(15);
             cout << "Current Gender: " << p->gender << "\nEnter new Gender (M/F or press Enter to keep): ";
             char buf[10];
             cin.getline(buf, 10);
             if (strlen(buf) > 0 && (strcmp(buf, "M") == 0 || strcmp(buf, "F") == 0)) strcpy(p->gender, buf);
         } else if(choice == '4'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
-            cout << "Current Arrival Time: " << p->arrivalTime << "\nEnter new Arrival Time (or press Enter to keep): ";
-            char buf[25];
-            cin.getline(buf, 25);
-            if (strlen(buf) > 0) strcpy(p->arrivalTime, buf);
-        } else if(choice == '5'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
-            cout << "Current Symptoms: " << p->symptoms << "\nEnter new Symptoms (or press Enter to keep): ";
+            system("cls"); edit(); gotoxy(0,12); solidBar(); setColor(15);
+            cout << "Current Illness: " << p->symptoms << "\nEnter new Illness (or press Enter to keep): ";
             char buf[100];
             cin.getline(buf, 100);
             if (strlen(buf) > 0) strcpy(p->symptoms, buf);
-        } else if(choice == '6'){
-            system("cls"); upd(); gotoxy(0,12); solidBar(); setColor(15);
+        } else if(choice == '5'){
+            system("cls"); edit(); gotoxy(0,12); solidBar(); setColor(15);
             cout << "Current Priority: " << p->priority << "\nEnter new Priority (1-Normal, 2-Urgent, 3-Emergency, 0 to keep): ";
             int newPrio; cin >> newPrio; cin.ignore();
             if (newPrio >= 1 && newPrio <= 3) p->priority = newPrio;
         } else if(choice == '0'){
-            break;
+            adminScreen();
         } else {
             setColor(12);
             cout << "\nInvalid Option! Please try again. \nPress [Enter] to proceed....";
             setColor(0); system("pause");
         }
         savePatient();
-        setColor(10);
-        cout << "\nPatient record updated successfully!\nPress [Enter] to proceed....";
-        setColor(0); system("pause");
     }
+    setColor(10);
+	cout << "\nPatient record updated successfully!\nPress [Enter] to proceed....";
+	setColor(0); system("pause");
 }
 
 void delPatient() {
     while (1) {
         system("cls");
-        delLabel(); //label DELETE
+        delLabel(); //LABEL DELETE
         gotoxy(0,12); solidBar();
         setColor(15);
         int y = 15;
         gotoxy(30, y);
         char opt[3][100] = {
-            "1. Delete ALL Patient Information",
-            "2. Delete Specific Patient by ID",
-            "0. Cancel"
+            "[1] Delete ALL Patient Information",
+            "[2] Delete Specific Patient by ID",
+            "[0] Cancel"
         };
         int n = sizeof(opt)/sizeof(opt[0]);
         for (int i = 0; i < n; i++) {
@@ -1670,6 +1617,8 @@ void delPatient() {
             if(strcmp(confirmuser, admin[0])==0 && strcmp(confirmpass, admin[1])==0){
                 freePatientList();
                 savePatient();
+                head = NULL;
+                patientCount = 0;
                 setColor(10);
                 cout << "\nAll patient records deleted successfully!\nPress [Enter] to proceed....";
                 setColor(0); system("pause");
@@ -1687,7 +1636,7 @@ void delPatient() {
             int delID;
             cin >> delID;
             cin.ignore();
-            PatientNode* prev = nullptr;
+            PatientNode* prev = NULL;
             PatientNode* curr = head;
             while (curr) {
                 if (curr->id == delID) {
@@ -1719,27 +1668,29 @@ void delPatient() {
     }
 }
 
-// Find patient by ID (returns pointer)
+// FIND PATIENT BY ID (RETURNS POINTER)
 PatientNode* findPatientByID(int searchID) {
     for (PatientNode* p = head; p; p = p->next) {
         if (p->id == searchID) return p;
     }
-    return nullptr;
+    return NULL;
 }
 
-// SEARCH RECORDS (linked list)
+// SEARCH RECORDS (LINKED LIST)
 void searchPatientByField() {
     while (1) {
         system("cls");
         setColor(15);
-        cout << "\nSEARCH PATIENT BY FIELD:\n";
-        cout << "1. Name\n";
-        cout << "2. Age\n";
-        cout << "3. Gender\n";
-        cout << "4. Symptoms\n";
-        cout << "5. Priority\n";
-        cout << "0. Back\n";
-        cout << "Enter your choice: ";
+        gotoxy(30,5); cout << "SEARCH PATIENT BY FIELD:";
+        gotoxy(30,6); cout << "[1] Name";
+        gotoxy(30,7); cout << "[2] Age";
+        gotoxy(30,8); cout << "[3] Gender";
+        gotoxy(30,9); cout << "[4] Illness";
+        gotoxy(30,10); cout << "[5] Priority";
+        gotoxy(30,11); cout << "[6] Patient ID";
+        gotoxy(30,12); cout << "[7] Arrival";
+        gotoxy(30,13); cout << "[0] Back";
+        gotoxy(30,14); cout << "Enter your choice: ";
         char choice;
         cin >> choice;
         cin.ignore();
@@ -1747,60 +1698,132 @@ void searchPatientByField() {
         bool found = false;
         if (choice == '1') {
             char searchName[100];
-            cout << "Enter Name to search: ";
+            cout << "\n\nEnter Name to search: ";
             cin.getline(searchName, 100);
             for (PatientNode* p = head; p; p = p->next) {
                 if (strstr(p->name, searchName)) {
                     setColor(10);
-                    cout << "\nFound: "; displayFormatID(p->id); cout << " | Name: " << p->name << " | Age: " << p->age << " | Gender: " << p->gender << " | Symptoms: " << p->symptoms << " | Priority: " << p->priority << endl;
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
                     found = true;
                 }
             }
         } else if (choice == '2') {
             int searchAge;
-            cout << "Enter Age to search: ";
+            cout << "\n\nEnter Age to search: ";
             cin >> searchAge; cin.ignore();
             for (PatientNode* p = head; p; p = p->next) {
                 if (p->age == searchAge) {
                     setColor(10);
-                    cout << "\nFound: "; displayFormatID(p->id); cout << " | Name: " << p->name << " | Age: " << p->age << " | Gender: " << p->gender << " | Symptoms: " << p->symptoms << " | Priority: " << p->priority << endl;
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
                     found = true;
                 }
             }
         } else if (choice == '3') {
             char searchGender[10];
-            cout << "Enter Gender to search (M/F): ";
+            cout << "\n\nEnter Gender to search (M/F): ";
             cin.getline(searchGender, 10);
             for (PatientNode* p = head; p; p = p->next) {
                 if (strcmp(p->gender, searchGender) == 0) {
                     setColor(10);
-                    cout << "\nFound: "; displayFormatID(p->id); cout << " | Name: " << p->name << " | Age: " << p->age << " | Gender: " << p->gender << " | Symptoms: " << p->symptoms << " | Priority: " << p->priority << endl;
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
                     found = true;
                 }
             }
         } else if (choice == '4') {
             char searchSymptoms[100];
-            cout << "Enter Symptoms to search: ";
+            cout << "\n\nEnter Illness to search: ";
             cin.getline(searchSymptoms, 100);
             for (PatientNode* p = head; p; p = p->next) {
                 if (strstr(p->symptoms, searchSymptoms)) {
                     setColor(10);
-                    cout << "\nFound: "; displayFormatID(p->id); cout << " | Name: " << p->name << " | Age: " << p->age << " | Gender: " << p->gender << " | Symptoms: " << p->symptoms << " | Priority: " << p->priority << endl;
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
                     found = true;
                 }
             }
         } else if (choice == '5') {
             int searchPriority;
-            cout << "Enter Priority to search (1-Normal, 2-Urgent, 3-Emergency): ";
+            cout << "\n\nEnter Priority to search (1-Normal, 2-Urgent, 3-Emergency): ";
             cin >> searchPriority; cin.ignore();
             for (PatientNode* p = head; p; p = p->next) {
                 if (p->priority == searchPriority) {
                     setColor(10);
-                    cout << "\nFound: "; displayFormatID(p->id); cout << " | Name: " << p->name << " | Age: " << p->age << " | Gender: " << p->gender << " | Symptoms: " << p->symptoms << " | Priority: " << p->priority << endl;
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
                     found = true;
                 }
             }
-        } else {
+        } else if (choice == '6') {
+            char seaID[50];
+            cout << "Enter Patient ID to search: ";
+            cin.getline(seaID, 50);
+            int searchID = atoi(seaID);
+            for (PatientNode* p = head; p; p = p->next) {
+                if (p->id == searchID) {
+                    setColor(10);
+                    cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
+                    found = true;
+                }
+            }
+        } else if (choice == '7') {
+		    char searchDateTime[100];
+		    cout << "Enter Arrival Time/Date to search (partial allowed): ";
+		    cin.getline(searchDateTime, 100);
+		    for (PatientNode* p = head; p; p = p->next) {
+		        if (strstr(p->arrivalTime, searchDateTime)) {
+		            setColor(10);
+		            cout << "\nFound: ";
+                    displayFormatID(p->id);
+                    cout << " | Name: " << p->name;
+                    cout << " | Age: " << p->age;
+                    cout << " | Gender: " << p->gender;
+                    cout << " | Arrival: " << p->arrivalTime;
+                    cout << " | Illness: " << p->symptoms;
+                    cout << " | Priority: " << p->priority << endl;
+                    found = true;
+		        }
+		    }
+		} else {
             setColor(12);
             cout << "\nInvalid Option! Please try again.\n";
         }
@@ -1819,7 +1842,7 @@ void displayPatientList() {
         cout << "\nAge                : " <<  p->age;
         cout << "\nGender             : " << p->gender;
         cout << "\nArrival            : " << p->arrivalTime;
-        cout << "\nIllness             : " << p->symptoms;
+        cout << "\nIllness            : " << p->symptoms;
         cout << "\nPriority Level     : ";
         switch (p->priority) {
             case 1: cout << "Normal"; break;
